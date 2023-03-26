@@ -1,0 +1,80 @@
+    
+      
+//{ Driver Code Starts
+//Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+Challenge!  
+
+Your task  is to implement the function atoi. The function takes a string(str) as argument and converts it to an integer and returns it.
+
+Note: You are not allowed to use inbuilt function.
+
+Example 1:
+
+Input:
+str = 123
+Output: 123
+Example 2:
+
+Input:
+str = 21a
+Output: -1
+Explanation: Output is -1 as all
+characters are not digit only.
+
+
+
+
+
+*******************************************************************
+//User function template for C++
+
+class Solution{
+  public:
+    /*You are required to complete this method */
+    int atoi(string str) {
+
+      //  Driver Code Ends
+       bool flag = false;
+       if(str[0]=='-')
+       {
+           flag = true;
+         str=  str.substr(1,str.length()-1);
+       }
+       
+       int num = 0;
+       for(auto it:str)
+       {
+           if((it-'0')>=0 &&(it-'0')<=9 )
+           {
+               num = num*10+(it-'0');
+           }
+           else 
+           return -1;
+       }
+       
+       if(flag)
+       return num*-1;
+       else 
+       return num;
+    }
+};
+
+//{ Driver Code Starts.
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string s;
+		cin>>s;
+		Solution ob;
+		cout<<ob.atoi(s)<<endl;
+	}
+}
+// } Driver Code Ends
