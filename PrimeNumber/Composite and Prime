@@ -1,0 +1,92 @@
+Given two integers L and R find (number of composites - number of primes) between the range L and R (both inclusive).
+
+Example 1:
+
+Input: L = 4, R = 6
+Output: 1
+Explanation: Composite no. are 4 and 6.
+And prime is 5.
+
+Example 2:
+
+Input: L = 4, R = 4
+Output: 1
+Explanation: There is no prime no. in [L,R]
+
+
+
+
+**********************************************************************************************
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+	public:
+	
+	
+	  bool prime(int n)
+	  {
+	      if(n==1)
+	      return false;
+	      
+	      if(n == 2 || n==3)
+	       return true;
+	       
+	       if(n%2==0 || n%3==0)
+	        return false;
+	        
+	        for(int i = 5;i*i<=n;i+=6)
+	        {
+	            if(n%i==0 || n%(i+2)==0)
+	             return false;
+	        }
+	        
+	        return true;
+	       
+	  }
+	      
+	      
+		int Count(int L, int R){
+		    // Code here
+		    
+		    int c = 0;
+		    int r = 0;
+		    if(L==1)
+		     L++;
+		    
+		    for(int i = L;i<=R;i++)
+		    {
+		        if(prime(i))
+		        {
+		            c++;
+		        }
+		        else
+		        {
+		            r++;
+		        }
+		    }
+		    
+		    if(L==1)
+		     c--;
+		    
+		    return (r-c);
+		}
+
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int L, R;
+		cin >> L >> R;
+		Solution obj;
+		int ans = obj.Count(L, R);
+		cout << ans << "\n";
+	}
+	return 0;
+}
+// } Driver Code Ends
