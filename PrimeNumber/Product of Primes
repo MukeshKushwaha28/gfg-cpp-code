@@ -1,0 +1,92 @@
+Given two numbers L and R (inclusive) find the product of primes within this range. Print the product modulo 109+7. If there are no primes in that range you must print 1.
+
+Example 1:
+
+Input: L = 1, R = 10
+Output: 210
+Explaination: The prime numbers are 
+2, 3, 5 and 7.
+Example 2:
+
+Input: L = 1, R = 20
+Output: 9699690
+Explaination: The primes are 2, 3, 
+5, 7, 11, 13, 17 and 19.
+
+
+
+
+
+************************************************************************************************************************
+
+
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution{
+public:
+
+     bool prime(int n)
+     {
+         if(n== 1)
+          return false;
+          
+          if(n==2|| n == 3)
+             return true;
+             
+             if(n%2==0 || n%3==0)
+              return false;
+              
+              for(int i = 5;i*i<=n;i+=6)
+              {
+                  if(n%i==0 || n%(i+2)==0)
+                   return false;
+              }
+              
+              return true;
+     }
+
+    long long primeProduct(long long L, long long R){
+        // code here
+        
+        long long m = 1000000007;
+        
+        long long p = 1;
+        if(L==1)
+         L++;
+        
+        for(int i = L;i<=R;i++ )
+        {
+            
+            if(prime(i))
+            {
+                p = (p*i)%m;
+            }
+        }
+        
+        return p;
+        
+    }
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        long long L, R;
+        cin>>L>>R;
+        
+        Solution ob;
+        cout<<ob.primeProduct(L, R)<<"\n";
+    }
+    return 0;
+}
+// } Driver Code Ends
