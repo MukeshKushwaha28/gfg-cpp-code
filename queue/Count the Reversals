@@ -1,0 +1,111 @@
+Given a string S consisting of only opening and closing curly brackets '{' and '}', find out the minimum number of reversals required to convert the string into a balanced expression.
+A reversal means changing '{' to '}' or vice-versa.
+
+Example 1:
+
+Input:
+S = "}{{}}{{{"
+Output: 3
+Explanation: One way to balance is:
+"{{{}}{}}". There is no balanced sequence
+that can be formed in lesser reversals.
+â€‹Example 2:
+
+Input: 
+S = "{{}{{{}{{}}{{"
+Output: -1
+Explanation: There's no way we can balance
+this sequence of braces.
+Your Task:
+You don't need to read input or print anything. Your task is to complete the function countRev() which takes the string S as input parameter and returns the minimum number of reversals required to balance the bracket sequence. If balancing is not possible, return -1. 
+
+Expected Time Complexity: O(|S|).
+Expected Auxiliary Space: O(1).
+
+Constraints:
+1 ≤ |S| ≤ 105
+
+
+
+
+
+******************************************************************************************************************
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+int countRev (string s);
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        string s; cin >> s;
+        cout << countRev (s) << '\n';
+    }
+}
+
+// Contributed By: Pranay Bansal
+// } Driver Code Ends
+
+
+
+int countRev (string s)
+{
+    // your code here
+    
+    if(s.size()%2 !=0) return -1;
+    
+    queue<char>q;
+    
+    int r=0;
+    int n=0;
+    
+    
+    for(int i = 0;i<s.size();i++)
+    {
+        if(s[i]=='{')
+         {
+             {
+             q.push(s[i]);
+           
+             }
+           
+         }
+         
+         else{
+             
+             if(!q.empty())
+             {
+              q.pop();
+              n++;
+             }
+            r++;
+         }
+       
+    }
+    
+    int c = q.size();
+    int d = r-n;
+    
+    // return d;
+    int ans1=0;
+    int ans2=0;
+    int ans = 0;
+    
+       if(c%2==0)
+         ans1=ans1+c/2;
+       else
+         ans1= ans1+(c/2)+1;
+      
+        if(d%2==0)
+           ans2=ans2+d/2;
+       else
+         ans2= ans2+(d/2)+1;
+   
+    
+       ans = ans1+ans2;
+       return ans;
+    
+    
+}
